@@ -1,4 +1,4 @@
-use crate::rest_model::{string_or_float, Asks, Bids, OrderBook, OrderSide, OrderStatus, OrderType, TimeInForce};
+use crate::rest_model::{Asks, Bids, OrderBook, OrderSide, OrderStatus, OrderType, TimeInForce};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "e")]
@@ -195,34 +195,26 @@ pub struct Kline {
     pub first_trade_id: i64,
     #[serde(rename = "L")]
     pub last_trade_id: i64,
-    #[serde(with = "string_or_float")]
     #[serde(rename = "o")]
-    pub open: f64,
-    #[serde(with = "string_or_float")]
+    pub open: String,
     #[serde(rename = "c")]
-    pub close: f64,
-    #[serde(with = "string_or_float")]
+    pub close: String,
     #[serde(rename = "h")]
-    pub high: f64,
-    #[serde(with = "string_or_float")]
+    pub high: String,
     #[serde(rename = "l")]
-    pub low: f64,
-    #[serde(with = "string_or_float")]
+    pub low: String,
     #[serde(rename = "v")]
-    pub volume: f64,
+    pub volume: String,
     #[serde(rename = "n")]
     pub number_of_trades: i64,
     #[serde(rename = "x")]
     pub is_final_bar: bool,
-    #[serde(with = "string_or_float")]
     #[serde(rename = "q")]
-    pub quote_volume: f64,
-    #[serde(with = "string_or_float")]
+    pub quote_volume: String,
     #[serde(rename = "V")]
-    pub active_buy_volume: f64,
-    #[serde(with = "string_or_float")]
+    pub active_buy_volume: String,
     #[serde(rename = "Q")]
-    pub active_volume_buy_quote: f64,
+    pub active_volume_buy_quote: String,
     #[serde(skip, rename = "B")]
     pub ignore_me: String,
 }
@@ -253,17 +245,17 @@ pub struct BookTickerEvent {
     #[serde(rename = "s")]
     pub symbol: String,
 
-    #[serde(rename = "b", with = "string_or_float")]
-    pub best_bid: f64,
+    #[serde(rename = "b")]
+    pub best_bid: String,
 
-    #[serde(rename = "B", with = "string_or_float")]
-    pub best_bid_qty: f64,
+    #[serde(rename = "B")]
+    pub best_bid_qty: String,
 
-    #[serde(rename = "a", with = "string_or_float")]
-    pub best_ask: f64,
+    #[serde(rename = "a")]
+    pub best_ask: String,
 
-    #[serde(rename = "A", with = "string_or_float")]
-    pub best_ask_qty: f64,
+    #[serde(rename = "A")]
+    pub best_ask_qty: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -345,11 +337,9 @@ pub struct EventBalance {
     #[serde(rename = "a")]
     pub asset: String,
     #[serde(rename = "f")]
-    #[serde(with = "string_or_float")]
-    pub free: f64,
+    pub free: String,
     #[serde(rename = "l")]
-    #[serde(with = "string_or_float")]
-    pub locked: f64,
+    pub locked: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -362,8 +352,7 @@ pub struct BalanceUpdate {
     pub asset: String,
 
     #[serde(rename = "d")]
-    #[serde(with = "string_or_float")]
-    pub delta: f64,
+    pub delta: String,
 
     #[serde(alias = "T")]
     pub clear_time: u64,
@@ -385,17 +374,13 @@ pub struct OrderUpdate {
     #[serde(rename = "f")]
     pub time_in_force: TimeInForce,
     #[serde(rename = "q")]
-    #[serde(with = "string_or_float")]
-    pub qty: f64,
+    pub qty: String,
     #[serde(rename = "p")]
-    #[serde(with = "string_or_float")]
-    pub price: f64,
+    pub price: String,
     #[serde(rename = "P")]
-    #[serde(with = "string_or_float")]
-    pub stop_price: f64,
+    pub stop_price: String,
     #[serde(rename = "F")]
-    #[serde(with = "string_or_float")]
-    pub iceberg_qty: f64,
+    pub iceberg_qty: String,
     #[serde(rename = "g")]
     pub order_list_id: i64,
     #[serde(rename = "C")]
@@ -409,17 +394,13 @@ pub struct OrderUpdate {
     #[serde(rename = "i")]
     pub order_id: u64,
     #[serde(rename = "l")]
-    #[serde(with = "string_or_float")]
-    pub qty_last_executed: f64,
+    pub qty_last_executed: String,
     #[serde(rename = "z")]
-    #[serde(with = "string_or_float")]
-    pub cumulative_filled_qty: f64,
+    pub cumulative_filled_qty: String,
     #[serde(rename = "L")]
-    #[serde(with = "string_or_float")]
-    pub last_executed_price: f64,
+    pub last_executed_price: String,
     #[serde(rename = "n")]
-    #[serde(with = "string_or_float")]
-    pub commission: f64,
+    pub commission: String,
     #[serde(rename = "N")]
     pub commission_asset: Option<String>,
     #[serde(rename = "T")]
@@ -437,15 +418,12 @@ pub struct OrderUpdate {
     #[serde(rename = "O")]
     pub order_creation_time: u64,
     #[serde(rename = "Z")]
-    #[serde(with = "string_or_float")]
-    pub cumulative_quote_asset_transacted_qty: f64,
+    pub cumulative_quote_asset_transacted_qty: String,
     /// (i.e. lastPrice * lastQty)
     #[serde(rename = "Y")]
-    #[serde(with = "string_or_float")]
-    pub last_quote_asset_transacted_qty: f64,
+    pub last_quote_asset_transacted_qty: String,
     #[serde(rename = "Q")]
-    #[serde(with = "string_or_float")]
-    pub quote_order_qty: f64,
+    pub quote_order_qty: String,
 }
 
 /// For OCO Events
