@@ -220,18 +220,36 @@ pub struct Fill {
 #[serde(rename_all = "camelCase")]
 pub struct Transaction {
     pub symbol: String,
+    #[serde(rename = "orderId")]
     pub order_id: u64,
+    #[serde(rename = "clientOrderId")]
     pub client_order_id: String,
+
+    #[serde(rename = "transactTime")]
     pub transact_time: u64,
+
+    #[serde(default)]
     pub price: String,
+    #[serde(default)]
+    #[serde(rename = "origQty")]
     pub orig_qty: String,
+    #[serde(default)]
+    #[serde(rename = "executedQty")]
     pub executed_qty: String,
+    #[serde(default)]
+    #[serde(rename = "cummulativeQuoteQty")]
     pub cummulative_quote_qty: String,
+    #[serde(default)]
     pub status: OrderStatus,
+    #[serde(default)]
+    #[serde(rename = "timeInForce")]
     pub time_in_force: TimeInForce,
+    #[serde(default)]
     #[serde(rename = "type")]
     pub order_type: OrderType,
+    #[serde(default)]
     pub side: OrderSide,
+    #[serde(default)]
     pub fills: Vec<Fill>,
 }
 
@@ -429,6 +447,12 @@ pub enum TimeInForce {
     GTX,
     #[serde(other)]
     Other,
+}
+
+impl Default for TimeInForce {
+    fn default() -> Self {
+        TimeInForce::GTC
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
@@ -1136,6 +1160,12 @@ pub enum OrderStatus {
     Expired,
     /// Part of the order or all of the order's quantity has filled.
     Trade,
+}
+
+impl Default for OrderStatus {
+    fn default() -> Self {
+        OrderStatus::New
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
