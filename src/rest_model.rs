@@ -169,23 +169,46 @@ pub struct Balance {
 #[serde(rename_all = "camelCase")]
 pub struct Order {
     pub symbol: String,
+    #[serde(rename = "orderId")]
     pub order_id: u64,
+    #[serde(rename = "orderListId")]
     pub order_list_id: i32,
+    #[serde(rename = "clientOrderId")]
     pub client_order_id: String,
     pub price: String,
+    #[serde(rename = "origQty")]
     pub orig_qty: String,
+    #[serde(rename = "executedQty")]
     pub executed_qty: String,
+    #[serde(default)]
+    #[serde(rename = "cummulativeQuoteQty")]
     pub cummulative_quote_qty: String,
+    #[serde(default)]
     pub status: OrderStatus,
+    #[serde(rename = "timeInForce")]
+    #[serde(default)]
     pub time_in_force: TimeInForce,
     #[serde(rename = "type")]
+    #[serde(default)]
     pub order_type: OrderType,
+    #[serde(default)]
     pub side: OrderSide,
+    #[serde(default)]
+    #[serde(rename = "stopPrice")]
     pub stop_price: String,
+    #[serde(default)]
+    #[serde(rename = "icebergQty")]
     pub iceberg_qty: String,
+    #[serde(default)]
     pub time: u64,
+    #[serde(default)]
+    #[serde(rename = "updateTime")]
     pub update_time: u64,
+    #[serde(default)]
+    #[serde(rename = "isWorking")]
     pub is_working: bool,
+    #[serde(default)]
+    #[serde(rename = "origQuoteOrderQty")]
     pub orig_quote_order_qty: String,
 }
 
